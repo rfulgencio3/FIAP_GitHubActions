@@ -1,18 +1,28 @@
-name: First Workflow CI / CD Pipeline
+name: First Workflow CI / CD Pipeline FIAP
 
+# Definição de quando o workflow será disparado
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: ["main"]
+    branches: [ main, developer]
   pull_request:
     branches: ["main"]
 
   workflow_dispatch:
-
+# Definindo os jobs que o workflow executará
 jobs:
-  job01:
+  test_job:
+   name: Executando job de teste
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v3
      - name: Run a one-line script
-       run: echo Olá Mundo! GitHubActions
+       run: echo Olá Mundo! Esse é o primeiro job utilizando GitHub Actions.
+  build_job:
+   name: Executando job de build de aplicação
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v3
+     - name: Run a one-line script
+       run: echo Olá Mundo! Esse é o segundo job utilizando GitHub Actions.
+  
